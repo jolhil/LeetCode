@@ -3,14 +3,12 @@ class Solution {
         if (x < 0) {
             return false;
         }
-        // String s = Integer.toString(x);
         char[] n = ("" + x).toCharArray();
         int l = n.length - 1;
         for (int i = 0; i < n.length/2; i++) {
-            if (n[i] != n[l]) {
+            if (n[i] != n[l-i]) {
                 return false;
             }
-            l--;
         }
         return true;
         
