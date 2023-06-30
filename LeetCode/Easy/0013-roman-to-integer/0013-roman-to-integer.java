@@ -1,67 +1,27 @@
 class Solution {
     public int romanToInt(String s) {
         int n = 0;
-        for (int i = 0; i < s.length(); i++) {
-            char current = s.charAt(i);
-            
-            char next = ' ';
-            if (i != s.length() - 1) {
-                next = s.charAt(i +1);
+        int ans = 0;
+        int prev = 0;
+        
+        for (int i = s.length()-1; i >=0; i--) {
+            switch(s.charAt(i)) {
+                case 'M' -> n = 1000;
+                case 'D' -> n = 500;
+                case 'C' -> n = 100; 
+                case 'L' -> n = 50; 
+                case 'X' -> n = 10; 
+                case 'V' -> n = 5; 
+                case 'I' -> n = 1; 
             }
-            switch (current) {
-                case 'M':
-                    n += 1000;
-                    break;
-                case 'D':
-                    n += 500;
-                    break;
-                case 'C':
-                    if (next == 'M') {
-                        n += 900;
-                        i++;
-                        break;
-                    } else if (next == 'D') {
-                        n += 400;
-                        i++;
-                        break;
-                    } else {
-                        n += 100;
-                        break;
-                    }
-                case 'L':
-                    n += 50;
-                    break;
-                case 'X':
-                    if (next == 'C') {
-                        n += 90;
-                        i++;
-                        break;
-                    } else if (next == 'L') {
-                        n += 40;
-                        i++;
-                        break;
-                    } else {
-                        n += 10;
-                        break;
-                    }
-                case 'V':
-                    n += 5;
-                    break;
-                case 'I':
-                    if (next == 'X') {
-                        n += 9;
-                        i++;
-                        break;
-                    } else if (next == 'V') {
-                        n += 4;
-                        i++;
-                        break;
-                    } else {
-                        n += 1;
-                        break;
-                    }
+            if (n < prev) {
+                ans -= n;
+                
+            } else {
+                ans += n;
             }
+            prev = n;
         }
-        return n;
+        return ans;
     }
 }
