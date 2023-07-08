@@ -1,14 +1,16 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
+        // if nums length is greater than 0 == nums is not empty, i = 1, otherwise i = 0;
+        int i = nums.length > 0? 1 : 0;
+        
+        // for each loop to read all elements in the nums.
+        for(int n : nums){
+            // i = 1 since if nums is empty, for each loop does not start.
+            if (n > nums[i-1])
+                // new unique number is detected.
+                nums[i++] = n;
         }
-        int x = 1;
-        for(int i = 0; i < nums.length - 1; i++) {
-            if (nums[i] != nums[i+1]) {
-                nums[x++] = nums[i+1];
-            }
-        }
-        return x;
+        return i;
+        
     }
 }
