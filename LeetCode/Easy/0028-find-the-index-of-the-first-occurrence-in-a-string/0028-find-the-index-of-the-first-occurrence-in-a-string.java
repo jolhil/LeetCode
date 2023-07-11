@@ -4,8 +4,8 @@ class Solution {
         for(int i = 0; i < haystack.length(); i++) {
             if(haystack.charAt(i) == needle.charAt(0)) {
                 index = i;
-                for(int j = 0; j < needle.length(); j++) {
-                    if (i == haystack.length() || needle.charAt(j) != haystack.charAt(i++)) {
+                for(char c : needle.toCharArray()) {
+                    if (i == haystack.length() || c != haystack.charAt(i++)) {
                         i = index;
                         index = -1;
                         break;
