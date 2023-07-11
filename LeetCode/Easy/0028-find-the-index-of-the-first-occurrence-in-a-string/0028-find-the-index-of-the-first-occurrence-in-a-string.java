@@ -12,7 +12,7 @@ class Solution {
                     }
                 }
                 if (index != -1) {
-                    break;
+                    return index;
                 }
             }
         }
