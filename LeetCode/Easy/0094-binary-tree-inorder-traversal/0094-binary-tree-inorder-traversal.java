@@ -18,30 +18,16 @@ class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> output = new ArrayList<>();
         TreeNode current = root;
-        TreeNode pre;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
 
-        while (current != null) {
-            if (current.left == null) {
-                output.add(current.val);
-                current = current.right;
-            } else {
-                // Find the inorder predecessor of the current node
-                pre = current.left;
-                while (pre.right != null && pre.right != current) {
-                    pre = pre.right;
-                }
-
-                if (pre.right == null) {
-                    // Make the current node the right child of the inorder predecessor
-                    pre.right = current;
-                    current = current.left;
-                } else {
-                    // Revert the changes made in the if block
-                    pre.right = null;
-                    output.add(current.val);
-                    current = current.right;
-                }
+        while(current != null || !stack.empty()) {
+            while(current!= null) {
+                stack.add(current);
+                current = current.left;
             }
+            current = stack.pop();
+            output.add(current.val);
+            current = current.right;
         }
 
         return output;
